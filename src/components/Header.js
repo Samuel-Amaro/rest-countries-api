@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon as moonSolid } from "@fortawesome/free-solid-svg-icons";
-import {faMoon as moonRegular} from "@fortawesome/free-regular-svg-icons";
+/*import {faMoon as moonRegular} from "@fortawesome/free-regular-svg-icons";*/
 
 export default function Header() {
   return (

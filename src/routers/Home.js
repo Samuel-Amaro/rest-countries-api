@@ -20,7 +20,14 @@ export default function Home() {
         {datas.map((countriObj, index) => {
           return (
             <li className="main__Item-List" key={index}>
-              <NavLink to={`/${countriObj.name.common}`} className="main__Item-Link" rel="next" target="_self">
+              <NavLink
+                to={`/${countriObj.name.common}`}
+                className="main__Item-Link"
+                rel="next"
+                target="_self"
+                aria-label={`Go to details page and learn more about this ${countriObj.name.common} country`}
+                title={`Go to details page and learn more about this ${countriObj.name.common} country`}
+              >
                 <CardCountrie
                   name={countriObj.name.common}
                   srcFlag={countriObj.flags.png}

@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
-import Root from './routers/Root';
+import { createBrowserRouter, RouterProvider} from "react-router-dom";
 import Home, {loader as loaderHome}  from './routers/Home';
-import CountriDetail, {loader as loaderCountriDetail} from './components/CountriDetail';
+import CountriDetail, {loader as loaderCountriDetail} from './routers/CountriDetail';
 
 const router = createBrowserRouter([
   {
