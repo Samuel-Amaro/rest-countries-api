@@ -21,7 +21,7 @@ export default function Home() {
           return (
             <li className="main__Item-List" key={index}>
               <NavLink
-                to={`/${countriObj.name.common}`}
+                to={`/country/${countriObj.name.common}`}
                 className="main__Item-Link"
                 rel="next"
                 target="_self"

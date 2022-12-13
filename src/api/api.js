@@ -1,6 +1,7 @@
 const URL_BASE = "https://restcountries.com/v3.1";
 const QUERY_ALL = "/all";
-const QUERY_NAME = `/name/`;
+const QUERY_NAME = "/name/";
+const QUERY_CODE = "/alpha/";
 
 export default async function getCountries(query) {
     let url = URL_BASE;
@@ -10,14 +11,16 @@ export default async function getCountries(query) {
     if(query.type === "name") {
         url += QUERY_NAME + query.value;
     }
+    if(query.type === "code") {
+        url += QUERY_CODE + query.value;
+    }
     try {
         let response = await fetch(url);
         if(response.ok) {
             return await response.json();
-        }else{
-            return "Error in loader data to countries";
         }
+        throw response;
     } catch (error) {
-        return "Error in loader data to countries";
+        console.log("Error in fetching data: " + error);
     }
 }

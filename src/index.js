@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     loader: loaderHome,
   },
   {
-    path: "/:countriName",
+    path: "/country/:countriName",
     element: <CountriDetail />,
     loader: loaderCountriDetail,
   },
