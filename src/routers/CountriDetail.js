@@ -1,34 +1,38 @@
-import { NavLink, useLoaderData } from "react-router-dom";
+import { NavLink, useLoaderData} from "react-router-dom";
 import getCountries from "../api/api";
 import Header from "../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import React from "react";
 
 export async function loader({ params }) {
+  //busca country details
   const country = await getCountries({
     type: "name",
     value: params.countriName,
   });
-  const borders = [];
-  console.log(
-    "country[0]?.borders === undefined: " + !(country[0]?.borders === undefined)
-  );
-  if(!(country[0]?.borders === undefined)) {
-    country[0].borders.forEach(async (codeCountry) => {
-      let countryBorder = await getCountries({
-        type: "code",
-        value: codeCountry,
+  let bordersCountrys = [];
+  //se possuir borders, busca nome dos country borders
+  if (!(country[0]?.borders === undefined)) {
+    bordersCountrys = await getCountries({
+      type: "code",
+      value: country[0].borders,
+    }).then((result) => {
+      let countrysBorders = [];
+      result.forEach((country) => {
+        countrysBorders.push({ name: country.name.common });
       });
-      borders.push({ name: countryBorder[0].name.common });
+      return countrysBorders;
     });
   }
-  return { country, borders };
+  return {
+    country: country[0],
+    borders: bordersCountrys,
+  };
 }
 
 export default function CountriDetail() {
   const { country, borders } = useLoaderData();
-  console.log(country[0].borders);
-  console.log(borders.length);
 
   //buscar currencies valores encontrados na propriedade currencie
   function foundCurrencies(currencies) {
@@ -54,7 +58,6 @@ export default function CountriDetail() {
     return languagesArray;
   }
 
-  //console.log(data);
   return (
     <>
       <Header />
@@ -73,48 +76,48 @@ export default function CountriDetail() {
         <section className="main__Content-Detail">
           <aside className="main__Side-Content">
             <img
-              src={country[0].flags.png}
-              alt={`Ilustration flag from ${country[0].name.common}`}
+              src={country.flags.png}
+              alt={`Ilustration flag from ${country.name.common}`}
               className="main__Ilustration-Countri"
             />
           </aside>
           <article className="main__Detail">
-            <h2 className="main__Name-Countri">{country[0].name.common}</h2>
+            <h2 className="main__Name-Countri">{country.name.common}</h2>
             <div className="main__Container">
               <div className="main__Container-Side">
                 <p className="main__Data">
                   <span className="main__Relevant"> Native Name:</span>
-                  {country[0].name.official}
+                  {country.name.official}
                 </p>
                 <p className="main__Data">
                   <span className="main__Relevant"> Population:</span>
-                  {country[0].population}
+                  {country.population}
                 </p>
                 <p className="main__Data">
                   <span className="main__Relevant"> Region:</span>
-                  {country[0].region}
+                  {country.region}
                 </p>
                 <p className="main__Data">
                   <span className="main__Relevant"> Sub Region:</span>
-                  {country[0].subregion}
+                  {country.subregion}
                 </p>
                 <p className="main__Data">
                   <span className="main__Relevant"> Capital:</span>
-                  {country[0].capital.join(", ")}
+                  {country?.capital.join(", ")}
                 </p>
               </div>
               <div className="main__Container-Side">
                 <p className="main__Data">
                   <span className="main__Relevant"> Top Level Domain:</span>
-                  {country[0].tld}
+                  {country.tld}
                 </p>
                 <p className="main__Data">
                   <span className="main__Relevant"> Currencies:</span>
-                  {foundCurrencies(country[0].currencies).join(", ")}
+                  {foundCurrencies(country.currencies).join(", ")}
                 </p>
                 <p className="main__Data">
                   <span className="main__Relevant"> Languages:</span>
-                  {foundLanguages(country[0].languages).join(", ")}
+                  {foundLanguages(country.languages).join(", ")}
                 </p>
               </div>
             </div>
@@ -148,6 +151,18 @@ export default function CountriDetail() {
             </div>
           </article>
         </section>
+        {/*<React.Suspense fallback={<p>Loading country details...</p>}>
+          <Await
+            resolve={data.country}
+            errorElement={<p>Error loading country details...!</p>}
+          >
+            {(country) => {
+              return (
+              );
+            }}
+          </Await>
+        </React.Suspense>
+          */}
       </div>
     </>
   );
