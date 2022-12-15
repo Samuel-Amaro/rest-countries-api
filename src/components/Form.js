@@ -1,17 +1,32 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { Form, useSubmit } from "react-router-dom";
+import { useRef, useEffect } from "react";
 
-export default function Form() {
+export default function FormSearch(props) {
+  const refInputSearch = useRef(null);
+  const submit = useSubmit();
+
+  useEffect(() => {
+    refInputSearch.current.value = props.searchTerm;
+  }, [props.searchTerm]);
+
   return (
-    <form className="Form" name="form-inputs" action="" method="post">
+    <Form className="Form" role="search ou filter countrys">
       <div className="form__Group">
         <input
-          type="text"
+          type="search"
+          ref={refInputSearch}
+          defaultValue={props.searchTerm}
           className="form__Input"
-          name="search-countrys"
+          name="q"
           placeholder="Search for a contry..."
           title="Search for a country..."
           aria-label="Search for a country..."
+          onChange={(event) => {
+            const isFirstSearch = props.searchTerm === "";
+            submit(event.currentTarget.form, {replace: !isFirstSearch});
+          }}
         />
       </div>
       <div className="form__Group">
@@ -63,6 +78,6 @@ export default function Form() {
           </ul>
         </div>
       </div>
-    </form>
+    </Form>
   );
 }

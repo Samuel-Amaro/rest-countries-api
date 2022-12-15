@@ -110,7 +110,7 @@ export default function CountriDetail() {
               <div className="main__Container-Side">
                 <p className="main__Data">
                   <span className="main__Relevant"> Top Level Domain:</span>
-                  {country.tld}
+                  {country.tld.join(", ")}
                 </p>
                 <p className="main__Data">
                   <span className="main__Relevant"> Currencies:</span>
