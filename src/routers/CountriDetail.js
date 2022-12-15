@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
+import formatNumber from "../utils/format-number";
 
 export async function loader({ params }) {
   //busca country details
@@ -91,7 +92,7 @@ export default function CountriDetail() {
                 </p>
                 <p className="main__Data">
                   <span className="main__Relevant"> Population:</span>
-                  {country.population}
+                  {formatNumber(country.population)}
                 </p>
                 <p className="main__Data">
                   <span className="main__Relevant"> Region:</span>

@@ -11,7 +11,7 @@ export async function loader() {
 
 export default function Home() {
   const datas = useLoaderData();
-  console.log(datas);
+  //console.log(datas);
   return (
     <>
       <Header />

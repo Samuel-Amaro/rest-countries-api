@@ -5,6 +5,8 @@ import { createBrowserRouter, RouterProvider} from "react-router-dom";
 import Home, {loader as loaderHome}  from './routers/Home';
 import CountriDetail, {loader as loaderCountriDetail} from './routers/CountriDetail';
 
+//TODO: implementar campo de busca
+
 const router = createBrowserRouter([
   {
     path: "/",
