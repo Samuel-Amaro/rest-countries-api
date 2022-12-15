@@ -1,0 +1,12 @@
+.Header{
+    background-color: var(--color-elements);
+    display: flex;
+    flex-flow: row wrap;
+    padding: 4.05rem 0 4rem 0;
+}
+
+.header__Btn-Toggle-Theme{
+    appearance: none;
+    border: none;
+    font-family: inherit;
+}

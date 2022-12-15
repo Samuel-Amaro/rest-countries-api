@@ -1,0 +1,35 @@
+@import-normalize;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root{
+    /*Dark Mode Elements*/
+    --dark-blue: hsl(209, 23%, 22%);
+    /*dark mode background*/
+    --very-dark-blue-01:  hsl(207, 26%, 17%);
+    /*Light mode text*/
+    --very-dark-blue-02: hsl(200, 15%, 8%);
+    /*light mode input*/
+    --dark-gray: hsl(0, 0%, 52%);
+    /*light mode background*/
+    --very-light-gray: hsl(0, 0%, 98%);
+    /*dark mode text & light mode elements*/
+    --white: hsl(0, 0%, 100%);
+
+    /**VARIABLES THEME**/
+    --color-elements: var(--white);
+    --color-background: var(--very-light-gray);
+    --color-text: var(--very-dark-blue-02);
+    --color-input: var(--dark-gray);
+}
+
+body{
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    background-color: var(--color-background);
+}

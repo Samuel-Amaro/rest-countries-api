@@ -4,13 +4,16 @@ import './index.css';
 import { createBrowserRouter, RouterProvider} from "react-router-dom";
 import Home, {loader as loaderHome}  from './routers/Home';
 import CountriDetail, {loader as loaderCountriDetail} from './routers/CountriDetail';
-
-//TODO: implementar campo de busca
+import {ThemeContext} from "./components/ThemeContext";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: (
+      <ThemeContext.Provider value="light">
+        <Home />
+      </ThemeContext.Provider>
+    ),
     loader: loaderHome,
   },
   {
