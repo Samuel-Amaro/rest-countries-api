@@ -17,11 +17,14 @@ export default function Header() {
             title="Toggle Theme"
             onPointerDown={(event) => {
               toggleTheme(theme === "light" ? "dark" : "light");
+            }} 
+            onKeyDown={(event) => {
+              if(event.code === "Enter") {
+                toggleTheme(theme === "light" ? "dark" : "light");
+              }
             }}
-            
           >
-            {<FontAwesomeIcon icon={theme === "light" ? moonRegular : moonSolid} />}
-            Dark Mode
+            {<FontAwesomeIcon icon={theme === "light" ? moonRegular : moonSolid}  className="header__Icon-Btn"/>}  Dark Mode
           </button>
         )}
       </ThemeContext.Consumer>

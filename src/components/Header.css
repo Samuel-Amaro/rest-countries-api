@@ -2,11 +2,28 @@
     background-color: var(--color-elements);
     display: flex;
     flex-flow: row wrap;
-    padding: 4.05rem 0 4rem 0;
+    justify-content: space-between;
+    padding: 4rem 1.95rem 3.9rem 1.95rem;
+    align-items: center;
+    box-shadow: 3px 2px 7px rgba(0, 0, 0, 0.1);
 }
 
 .header__Btn-Toggle-Theme{
     appearance: none;
+    display: flex;
+    align-items: center;
     border: none;
     font-family: inherit;
+    color: var(--color-text);
+    font-weight: 600;
+    font-size: 1.45rem;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 3px 0 0 0;
+}
+
+.header__Icon-Btn{
+    font-size: 1.8rem;
+    display: inline-block;
+    margin: 0 18px 0 0;
 }
