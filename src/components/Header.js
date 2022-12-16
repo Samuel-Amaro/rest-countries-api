@@ -18,6 +18,7 @@ export default function Header() {
             onPointerDown={(event) => {
               toggleTheme(theme === "light" ? "dark" : "light");
             }}
+            
           >
             {<FontAwesomeIcon icon={theme === "light" ? moonRegular : moonSolid} />}
             Dark Mode
