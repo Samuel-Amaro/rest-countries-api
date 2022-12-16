@@ -1,0 +1,78 @@
+/*****MOBILE-FIRST*****/
+
+.Form {
+  display: block;
+  margin: 48px 32px 0 32px;
+}
+
+.form__Input {
+  appearance: none;
+  display: block;
+  font-family: inherit;
+  border: none;
+  background-color: var(--color-elements);
+  background-image: url("../icons/lupa-light.svg");
+  background-repeat: no-repeat;
+  background-position: 10px 32px;
+  background-size: 18px 18px;
+  color: var(--color-input);
+  font-size: 1.2rem;
+  font-weight: 300;
+  padding: 32px 30px 32px 45px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.form__Input::placeholder {
+  color: var(--color-input);
+}
+
+.form__input_theme--light {
+  background-image: url("../icons/lupa-light.svg");
+  box-shadow: 0.5px 0.5px 15px 2px rgba(0, 0, 0, 0.1);
+}
+
+.form__input_theme--dark {
+  background-image: url("../icons/lupa-dark.svg");
+}
+
+.form__Group:nth-child(1) {
+    margin: 0 0 80px 0;
+}
+
+.form__Select{
+    background-color: var(--color-elements);
+    box-shadow: 0.5px 0.5px 15px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+    font-size: 1.5rem;
+    color: var(--color-text);
+    font-weight: 600;
+    padding: 2.1rem 0;
+}
+
+.form__Icon-Select{
+    font-size: 1.2rem;
+    color: var(--color-text);
+}
+
+.form__Value-Selected{
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+}
+
+.form__Opt-List{
+    list-style: none;
+    position: absolute;
+    display: none;
+}
+
+/*****TABLETS*****/
+@media screen and (min-width: 550px) {
+  .form__Input {
+    font-size: 1.48rem;
+    background-size: 28px 28px;
+    background-position: 65px 32px;
+    padding: 32px 150px 31px 150px;
+  }
+}
