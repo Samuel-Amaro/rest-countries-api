@@ -3,6 +3,7 @@ import FormSearch from "../components/Form";
 import getCountries from "../api/api";
 import { NavLink, useLoaderData } from "react-router-dom";
 import CardCountrie from "../components/Card";
+import { useState } from "react";
 
 export async function loader({ request }) {
   //se tiver informado query de search, obtem o termo de pesquisa
@@ -24,13 +25,45 @@ export async function loader({ request }) {
 
 export default function Home() {
   const datas = useLoaderData();
+  const [regionFiltered, setRegionFiltered] = useState("All");
   //console.log(datas);
   return (
     <>
       <Header />
-      <FormSearch searchTerm={datas.search ? datas.search : ""} />
+      <FormSearch searchTerm={datas.search ? datas.search : ""} setRegionFiltered={setRegionFiltered}/>
       {datas.countrys ? (
         <ul className="main__List-Countries">
+          {
+            datas.countrys.filter((countriObj) => {
+              if (countriObj.region.toLowerCase() === regionFiltered.toLowerCase()) 
+                return true;
+              if(regionFiltered.toLowerCase() === "all")
+                return true;
+            }).map((countriObj, index) => {
+              return (
+                <li className="main__Item-List" key={index}>
+                  <NavLink
+                    to={`/country/${countriObj.name.common}`}
+                    className="main__Item-Link"
+                    rel="next"
+                    target="_self"
+                    aria-label={`Go to details page and learn more about this ${countriObj.name.common} country`}
+                    title={`Go to details page and learn more about this ${countriObj.name.common} country`}
+                  >
+                    <CardCountrie
+                      name={countriObj.name.common}
+                      srcFlag={countriObj.flags.png}
+                      population={countriObj.population}
+                      region={countriObj.region}
+                      capital={countriObj.capital}
+                    />
+                  </NavLink>
+                </li>
+              );
+            })
+          }
+        </ul>
+        /*<ul className="main__List-Countries">
           {datas.countrys.map((countriObj, index) => {
             return (
               <li className="main__Item-List" key={index}>
@@ -54,6 +87,7 @@ export default function Home() {
             );
           })}
         </ul>
+        */
       ) : (
         <p>There are no countries with that name</p>
       )}

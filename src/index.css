@@ -24,7 +24,8 @@
   --color-elements: var(--white);
   --color-background: var(--very-light-gray);
   --color-text: var(--very-dark-blue-02);
-  --color-input: var(--dark-gray);
+  --color-input: var(--dark-gray);  
+  --color-option-selected: #858585;
 }
 
 body {
