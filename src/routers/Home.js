@@ -4,6 +4,7 @@ import getCountries from "../api/api";
 import { NavLink, useLoaderData } from "react-router-dom";
 import CardCountrie from "../components/Card";
 import { useState } from "react";
+import "./Home.css";
 
 export async function loader({ request }) {
   //se tiver informado query de search, obtem o termo de pesquisa
@@ -35,6 +36,7 @@ export default function Home() {
         <ul className="main__List-Countries">
           {
             datas.countrys.filter((countriObj) => {
+              //console.log(countriObj);
               if (countriObj.region.toLowerCase() === regionFiltered.toLowerCase()) 
                 return true;
               if(regionFiltered.toLowerCase() === "all")

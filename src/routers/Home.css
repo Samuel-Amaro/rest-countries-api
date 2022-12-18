@@ -1,0 +1,17 @@
+/*****MOBILE-FIRST*****/
+
+.main__List-Countries{
+    list-style: none;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 50px;
+}
+
+.main__Item-List{
+    max-width: 264px;
+}
+
+.main__Item-Link{
+    display: block;
+    text-decoration: none;
+}

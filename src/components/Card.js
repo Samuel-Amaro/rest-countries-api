@@ -1,4 +1,5 @@
 import formatNumber from "../utils/format-number";
+import "./Card.css";
 
 export default function CardCountrie(props) {
   return (
@@ -8,16 +9,21 @@ export default function CardCountrie(props) {
         alt={`Ilustration Flag ${props.name}`}
         src={props.srcFlag}
       />
-      <h2 className="main__Name-Countrie">{props.name}</h2>
-      <p className="main__Population">
-        <span className="main__Relevant">Population:</span> {formatNumber(props.population)}
-      </p>
-      <p className="main__Region">
-        <span className="main__Relevant">Region:</span> {props.region}
-      </p>
-      <p className="main__Region">
-        <span className="main__Relevant">Capital:</span> {props.capital}
-      </p>
+      <div className="main__Container-Text">
+        <h2 className="main__Name-Countrie">{props.name}</h2>
+        <p className="main__Population">
+          <span className="main__Relevant">Population:</span>
+          <span className="main__Value">{formatNumber(props.population)}</span>
+        </p>
+        <p className="main__Region">
+          <span className="main__Relevant">Region:</span>
+          <span className="main__Value">{props.region}</span>
+        </p>
+        <p className="main__Region">
+          <span className="main__Relevant">Capital:</span>
+          <span className="main__Value">{props.capital}</span>
+        </p>
+      </div>
     </div>
   );
 }

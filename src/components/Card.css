@@ -1,0 +1,48 @@
+/*****MOBILE-FIRST*****/
+
+.main__Card-Contrie {
+  background-color: var(--color-elements);
+  padding-bottom: 38px;
+  border-radius: 7px;
+}
+
+.main__Ilustration {
+  display: block;
+  max-width: 100%;
+  max-height: 160px;
+  width: 100%;
+  margin: 0 0 29px 0;
+  border-radius: 7px 7px 0 0;
+}
+
+.main__Name-Countrie{
+    color: var(--color-text);
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin: 0 0 19px 0;
+}
+
+.main__Relevant, 
+.main__Value{
+    color: var(--color-text);
+    display: inline-block;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.main__Relevant{
+    font-weight: 600;
+    margin: 0 4px 0 0;
+}
+
+.main__Value{
+    font-weight: 300;
+}
+
+.main__Population, .main__Region{
+    margin: 0 0 5.5px 0;
+}
+
+.main__Container-Text{
+    padding: 0 10px 0 24px;
+}

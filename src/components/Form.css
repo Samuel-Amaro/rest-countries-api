@@ -2,7 +2,7 @@
 
 .Form {
   display: block;
-  margin: 48px 32px 0 32px;
+  margin: 48px 32px 48px 32px;
 }
 
 .form__Input {
@@ -49,11 +49,11 @@
   font-weight: 600;
   padding: 2.1rem 2.5rem 2.1rem 3.05rem;
   border-radius: 7px;
-  width: 406px;
+  width: auto;
 }
 
 .form__select_active,
-.form__Select:focus{
+.form__Select:focus {
   box-shadow: 0.5px 0.5px 15px 2px rgba(0, 0, 0, 0.1);
 }
 
@@ -69,11 +69,11 @@
   justify-content: space-between;
 }
 
-.form__Option_Selected{
+.form__Option_Selected {
   color: var(--color-option-selected);
 }
 
-.form__Value{
+.form__Value {
   display: block;
   font-family: inherit;
 }
@@ -95,16 +95,15 @@
   gap: 20px;
 }
 
-.form__opt-list_Hidden{
+.form__opt-list_Hidden {
   max-height: 0;
   visibility: hidden;
   height: 0;
 }
 
-.form__Option{
+.form__Option {
   cursor: pointer;
 }
-
 
 /*****TABLETS*****/
 @media screen and (min-width: 550px) {
@@ -113,5 +112,9 @@
     background-size: 28px 28px;
     background-position: 65px 32px;
     padding: 32px 150px 31px 150px;
+  }
+
+  .form__Select {
+    width: 406px;
   }
 }
