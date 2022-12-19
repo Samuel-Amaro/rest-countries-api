@@ -57,7 +57,11 @@ export default function Home() {
                       srcFlag={countriObj.flags.png}
                       population={countriObj.population}
                       region={countriObj.region}
-                      capital={countriObj.capital}
+                      capital={
+                        countriObj?.capital === undefined
+                          ? "No capital"
+                          : countriObj.capital
+                      }
                     />
                   </NavLink>
                 </li>

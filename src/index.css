@@ -35,9 +35,14 @@ body {
   background-color: var(--color-background);
 }
 
+.Main{
+  padding: 0 0 92px 0;
+}
+
 [data-theme="dark"]{
   --color-elements: var(--dark-blue);
   --color-background: var(--very-dark-blue-01);
   --color-text: var(--white); 
   --color-input: var(--white);
 }
+

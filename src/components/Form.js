@@ -77,6 +77,8 @@ export default function FormSearch(props) {
                   */
                 }}
                 role="listbox"
+                aria-expanded={isOpenSelect}
+                aria-controls="list-filter-countrys"
               >
                 <span className="form__Value-Selected">
                   <span className="form__Value">{valueSelectedFilter}</span>{" "}
@@ -92,6 +94,7 @@ export default function FormSearch(props) {
                       : "form__Opt-List form__opt-list_Hidden"
                   }
                   role="presentation"
+                  id="list-filter-countrys"
                 >
                   {regions.map((region, index) => {
                     return (

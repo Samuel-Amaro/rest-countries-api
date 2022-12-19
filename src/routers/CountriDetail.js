@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import formatNumber from "../utils/format-number";
+import "./CountriDetail.css";
 
 export async function loader({ params }) {
   //busca country details
@@ -77,7 +78,7 @@ export default function CountriDetail() {
         <section className="main__Content-Detail">
           <aside className="main__Side-Content">
             <img
-              src={country.flags.png}
+              src={country.flags.svg}
               alt={`Ilustration flag from ${country.name.common}`}
               className="main__Ilustration-Countri"
             />

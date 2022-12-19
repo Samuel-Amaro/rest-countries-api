@@ -4,45 +4,49 @@
   background-color: var(--color-elements);
   padding-bottom: 38px;
   border-radius: 7px;
+  box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.07);
 }
 
 .main__Ilustration {
   display: block;
   max-width: 100%;
-  max-height: 160px;
-  width: 100%;
-  margin: 0 0 29px 0;
+  width: 264px;
+  height: 160px;
+  margin: 0 0 26.3px 0;
   border-radius: 7px 7px 0 0;
 }
 
-.main__Name-Countrie{
-    color: var(--color-text);
-    font-weight: 800;
-    font-size: 1.1rem;
-    margin: 0 0 19px 0;
+.main__Name-Countrie {
+  color: var(--color-text);
+  font-weight: 800;
+  font-size: 1.15rem;
+  margin: 0 0 19px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.main__Relevant, 
-.main__Value{
-    color: var(--color-text);
-    display: inline-block;
-    font-family: inherit;
-    font-size: 1rem;
+.main__Relevant,
+.main__Value {
+  color: var(--color-text);
+  display: inline-block;
+  font-family: inherit;
 }
 
-.main__Relevant{
-    font-weight: 600;
-    margin: 0 4px 0 0;
+.main__Relevant {
+  font-weight: 600;
+  margin: 0 4px 0 0;
 }
 
-.main__Value{
-    font-weight: 300;
+.main__Value {
+  font-weight: 300;
 }
 
-.main__Population, .main__Region{
-    margin: 0 0 5.5px 0;
+.main__Population,
+.main__Region {
+  margin: 0 0 7.6px 0;
 }
 
-.main__Container-Text{
-    padding: 0 10px 0 24px;
+.main__Container-Text {
+  padding: 0 10px 0 24px;
 }

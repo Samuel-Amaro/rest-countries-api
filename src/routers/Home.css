@@ -1,17 +1,26 @@
 /*****MOBILE-FIRST*****/
 
-.main__List-Countries{
-    list-style: none;
-    display: flex;
-    flex-flow: column wrap;
-    gap: 50px;
+.main__List-Countries {
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 25px;
+  margin: 0 25px 0 25px;
 }
 
-.main__Item-List{
-    max-width: 264px;
+.main__Item-List {
+  max-width: 264px;
 }
 
-.main__Item-Link{
-    display: block;
-    text-decoration: none;
+.main__Item-Link {
+  display: block;
+  text-decoration: none;
+}
+
+@media screen and (min-width: 550px) {
+  .main__List-Countries {
+    gap: 76px;
+    margin: 0 78px 0 78px;
+  }
 }
