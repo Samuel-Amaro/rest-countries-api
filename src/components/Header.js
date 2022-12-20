@@ -27,7 +27,7 @@ export default function Header() {
               }
             }}
           >
-            {<FontAwesomeIcon icon={theme === "light" ? moonRegular : moonSolid}  className="header__Icon-Btn"/>} Dark Mode
+            {<FontAwesomeIcon icon={theme === "light" ? moonRegular : moonSolid}  className="header__Icon-Btn"/>}Dark Mode
           </button>
         )}
       </ThemeContext.Consumer>

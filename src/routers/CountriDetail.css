@@ -95,7 +95,6 @@
   box-shadow: 1px 1px 8px 2px rgba(0, 0, 0, 0.1);
   max-width: 192px;
   width: 100%;
-  overflow: hidden;
 }
 
 .main__Item-Link-Border {
@@ -109,6 +108,9 @@
   padding: 14px 30.5px;
   width: 100%;
   text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .main__Relevante-Info_Text--Big {
