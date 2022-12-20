@@ -33,7 +33,7 @@ export default function Home() {
       <Header />
       <FormSearch searchTerm={datas.search ? datas.search : ""} setRegionFiltered={setRegionFiltered}/>
       {datas.countrys ? (
-        <ul className="main__List-Countries">
+        <ul className="main__List-Countries" aria-label="List from countrys">
           {
             datas.countrys.filter((countriObj) => {
               //console.log(countriObj);
@@ -69,31 +69,6 @@ export default function Home() {
             })
           }
         </ul>
-        /*<ul className="main__List-Countries">
-          {datas.countrys.map((countriObj, index) => {
-            return (
-              <li className="main__Item-List" key={index}>
-                <NavLink
-                  to={`/country/${countriObj.name.common}`}
-                  className="main__Item-Link"
-                  rel="next"
-                  target="_self"
-                  aria-label={`Go to details page and learn more about this ${countriObj.name.common} country`}
-                  title={`Go to details page and learn more about this ${countriObj.name.common} country`}
-                >
-                  <CardCountrie
-                    name={countriObj.name.common}
-                    srcFlag={countriObj.flags.png}
-                    population={countriObj.population}
-                    region={countriObj.region}
-                    capital={countriObj.capital}
-                  />
-                </NavLink>
-              </li>
-            );
-          })}
-        </ul>
-        */
       ) : (
         <p>There are no countries with that name</p>
       )}

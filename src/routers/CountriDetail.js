@@ -88,59 +88,77 @@ export default function CountriDetail() {
             <div className="main__Container">
               <div className="main__Container-Side">
                 <p className="main__Data">
-                  <span className="main__Relevant"> Native Name:</span>
-                  {country.name.official}
+                  <span className="main__Relevant-Info">Native Name:</span>
+                  <span className="main__Value-Info">
+                    {country.name.official}
+                  </span>
                 </p>
                 <p className="main__Data">
-                  <span className="main__Relevant"> Population:</span>
-                  {formatNumber(country.population)}
+                  <span className="main__Relevant-Info">Population:</span>
+                  <span className="main__Value-Info">
+                    {formatNumber(country.population)}
+                  </span>
                 </p>
                 <p className="main__Data">
-                  <span className="main__Relevant"> Region:</span>
-                  {country.region}
+                  <span className="main__Relevant-Info">Region:</span>
+                  <span className="main__Value-Info">{country.region}</span>
                 </p>
                 <p className="main__Data">
-                  <span className="main__Relevant"> Sub Region:</span>
-                  {country.subregion}
+                  <span className="main__Relevant-Info">Sub Region:</span>
+                  <span className="main__Value-Info">{country.subregion}</span>
                 </p>
                 <p className="main__Data">
-                  <span className="main__Relevant"> Capital:</span>
-                  {country?.capital.join(", ")}
+                  <span className="main__Relevant-Info">Capital:</span>
+                  <span className="main__Value-Info">
+                    {country?.capital === undefined ? "No capital" : country.capital}
+                  </span>
                 </p>
               </div>
               <div className="main__Container-Side">
                 <p className="main__Data">
-                  <span className="main__Relevant"> Top Level Domain:</span>
-                  {country.tld.join(", ")}
+                  <span className="main__Relevant-Info">Top Level Domain:</span>
+                  <span className="main__Value-Info">
+                    {country.tld.join(", ")}
+                  </span>
                 </p>
                 <p className="main__Data">
-                  <span className="main__Relevant"> Currencies:</span>
-                  {foundCurrencies(country.currencies).join(", ")}
+                  <span className="main__Relevant-Info">Currencies:</span>
+                  <span className="main__Value-Info">
+                    {foundCurrencies(country.currencies).join(", ")}
+                  </span>
                 </p>
                 <p className="main__Data">
-                  <span className="main__Relevant"> Languages:</span>
-                  {foundLanguages(country.languages).join(", ")}
+                  <span className="main__Relevant-Info">Languages:</span>
+                  <span className="main__Value-Info">
+                    {foundLanguages(country.languages).join(", ")}
+                  </span>
                 </p>
               </div>
             </div>
-            <div className="main__Data">
-              <span className="main__Relevant">Border Countries:</span>
+            <div className="main__Container-Side">
+              <span className="main__Relevant-Info main__Relevante-Info_Text--Big">
+                Border Countries:
+              </span>
               {
                 /*propriedadde border pode existir ou não dependendo do country selected*/
                 borders.length === 0 ? (
-                  "No countries on the border"
+                  <span className="main__Message-Countries-Borders">No countries on the border</span>
                 ) : (
-                  <ul className="main__List-Contries-Borers">
+                  <ul
+                    className="main__List-Countries-Borders"
+                    aria-label="List from countrys borders"
+                  >
                     {borders.map((border, index) => {
                       return (
-                        <li className="main__Item-Border-Countri" key={index}>
+                        <li className="main__Item-Border-Countri" key={index} tabIndex="0">
                           <NavLink
                             to={`/country/${border.name}`}
-                            className="main__Item-Link"
+                            className="main__Item-Link-Border"
                             rel="next"
                             target="_self"
                             aria-label={`Go to details page and learn more about this ${border.name} country`}
                             title={`Go to details page and learn more about this ${border.name} country`}
+                            tabIndex="0"
                           >
                             {border.name}
                           </NavLink>
