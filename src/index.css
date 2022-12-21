@@ -24,7 +24,7 @@
   --color-elements: var(--white);
   --color-background: var(--very-light-gray);
   --color-text: var(--very-dark-blue-02);
-  --color-input: var(--dark-gray);  
+  --color-input: var(--dark-gray);
   --color-option-selected: #858585;
 }
 
@@ -35,14 +35,20 @@ body {
   background-color: var(--color-background);
 }
 
-.Main{
+.Main {
   padding: 0 0 92px 0;
 }
 
-[data-theme="dark"]{
+[data-theme="dark"] {
   --color-elements: var(--dark-blue);
   --color-background: var(--very-dark-blue-01);
-  --color-text: var(--white); 
+  --color-text: var(--white);
   --color-input: var(--white);
 }
 
+/*****BREAKPOINT 960px to DEDSKTOP LAYOUT*****/
+@media screen and (min-width: 960px) {
+  .Main {
+    padding: 0 0 45px 0;
+  }
+}

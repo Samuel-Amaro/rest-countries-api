@@ -33,7 +33,7 @@ export default function FormSearch(props) {
                     : "form__Input form__input_theme--dark"
                 }
                 name="q"
-                placeholder="Search for a contry..."
+                placeholder="Search for a country..."
                 title="Search for a country..."
                 aria-label="Search for a country..."
                 onChange={(event) => {

@@ -28,7 +28,7 @@
   color: var(--color-input);
 }
 
-.form__Input:focus{
+.form__Input:focus {
   box-shadow: 1.5px 1.5px 18px 6px rgba(0, 0, 0, 0.1);
   outline: none;
 }
@@ -123,5 +123,49 @@
     font-size: 1.5rem;
     padding: 2.1rem 2.5rem 2.1rem 3.05rem;
     width: 406px;
+  }
+}
+
+/*****BREAKPOINT 960px TO DESKTOP LAYOUT*****/
+@media screen and (min-width: 960px) {
+  .form__Input {
+    font-size: 0.9rem;
+    font-weight: 300;
+    background-size: 16px 16px;
+    background-position: 32px 19px;
+    padding: 18px 73px 18px 73px;
+    width: 480px;
+    border-radius: 4px;
+    max-width: none;
+  }
+
+  .Form {
+    margin: 48px 4.95rem 48px 5rem;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .form__Group:nth-child(1) {
+    margin: 0;
+  }
+
+  .form__Select {
+    font-size: 0.9rem;
+    padding: 1.25rem 1.3rem 1.25rem 1.4rem;
+    border-radius: 5px;
+    width: 200px;
+  }
+
+  .form__Icon-Select {
+    font-size: 0.8rem;
+  }
+
+  .form__Opt-List {
+    top: 107%;
+    border-radius: 4px;
+    padding: 1.1rem 1.5rem 1.1rem 1.5rem;
+    gap: 11.5px;
   }
 }

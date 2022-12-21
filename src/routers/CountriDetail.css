@@ -60,12 +60,12 @@
   color: var(--color-text);
 }
 
-.main__Relevant-Info{
+.main__Relevant-Info {
   font-weight: 600;
   margin: 0 6px 0 0;
 }
 
-.main__Message-Countries-Borders{
+.main__Message-Countries-Borders {
   margin: 0 0 0 8px;
 }
 
@@ -118,6 +118,7 @@
   margin: 0 0 39px 0;
 }
 
+/******BREKPOINT 550px TO LAYOUT TABLETS*****/
 @media screen and (min-width: 550px) {
   .main__Countri-Detail {
     padding: 0 56px 28px 56px;
@@ -132,5 +133,57 @@
   .main__Icon-Link {
     color: var(--color-text);
     margin: 0 28px 0 0;
+  }
+}
+
+/******BREAKPOINT 960px TO LAYOUT DESKTOP*****/
+@media screen and (min-width: 960px) {
+  .main__Countri-Detail {
+    margin: 80px 0 0 0;
+    padding: 0 80px 28px 80px;
+  }
+
+  .main__Link-Back {
+    font-size: 1rem;
+    margin: 0 0 80px 0;
+    padding: 11px 0 11px 0;
+    border-radius: 4px;
+    max-width: 136px;
+  }
+
+  .main__Icon-Link {
+    margin: 0 8px 0 0;
+  }
+
+  .main__Content-Detail {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  .main__Side-Content {
+    margin: 0;
+  }
+
+  .main__Name-Countri {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 0 0 54px 0;
+    color: var(--color-text);
+  }
+
+  .main__Relevant-Info,
+  .main__Value-Info,
+  .main__Message-Countries-Borders,
+  .main__Item-Link-Border,
+  .main__Relevante-Info_Text--Big {
+    font-size: 16px;
+  }
+
+  .main__Ilustration-Countri {
+    max-width: 622px;
+    max-height: none;
+    width: 100%;
+    margin: 0 auto;
   }
 }
