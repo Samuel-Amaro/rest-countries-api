@@ -135,7 +135,7 @@ export default function CountriDetail() {
                 </p>
               </div>
             </div>
-            <div className="main__Container-Side">
+            <div className="main__Container">
               <span className="main__Relevant-Info main__Relevante-Info_Text--Big">
                 Border Countries:
               </span>
