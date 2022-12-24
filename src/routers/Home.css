@@ -24,6 +24,7 @@
   font-weight: 600;
 }
 
+/*****BREAKPOINT TO TABLETS LAYOUT****/
 @media screen and (min-width: 550px) {
   .main__List-Countries {
     gap: 76px;

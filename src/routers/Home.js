@@ -58,12 +58,9 @@ export default function Home() {
     <>
       <Header />
       <FormSearch
-        searchTerm={datas.search ? datas.search : ""}
-        setRegionFiltered={setRegionFiltered}
         onSearchCountrys={onSearchCountrys}
         onFilteredRegion={onFilteredRegion}
         search={search}
-        setSearch={setSearch}
       />
       {
         <ul className="main__List-Countries" aria-label="List from countrys">

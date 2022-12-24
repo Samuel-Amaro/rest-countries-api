@@ -1,21 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
-import { Form, useSubmit } from "react-router-dom";
-import { useRef, useEffect, useState } from "react";
+import { Form} from "react-router-dom";
+import { useState } from "react";
 import "./Form.css";
 import { ThemeContext } from "./ThemeContext";
 
 export default function FormSearch(props) {
-  const refInputSearch = useRef(null);
-  const submit = useSubmit();
   const [isOpenSelect, setIsOpenSelect] = useState(false);
   const [valueSelectedFilter, setValueSelectedFilter] =
     useState("Filter by Region");
   const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania", "All"];
-
-  useEffect(() => {
-    refInputSearch.current.value = props.search;
-  }, [props.search]);
 
   return (
     <ThemeContext.Consumer>
@@ -25,25 +19,16 @@ export default function FormSearch(props) {
             <div className="form__Group">
               <input
                 type="search"
-                ref={refInputSearch}
-                /*defaultValue={props.searchTerm}*/
-                defaultValue={props.search}
+                value={props.search}
                 className={
                   theme === "light"
                     ? "form__Input form__input_theme--light"
                     : "form__Input form__input_theme--dark"
                 }
-                /*name="q"*/
                 placeholder="Search for a country..."
                 title="Search for a country..."
                 aria-label="Search for a country..."
                 onChange={(event) => {
-                  /*const isFirstSearch = props.searchTerm === "";
-                  submit(event.currentTarget.form, {
-                    replace: !isFirstSearch,
-                  });
-                  */
-                  //props.setSearch(event.target.value);
                   props.onSearchCountrys(event.target.value);
                 }}
               />
@@ -69,16 +54,6 @@ export default function FormSearch(props) {
                       return !prevState;
                     });
                   }
-                }}
-                onBlur={(event) => {
-                  //so fechar o selected quando o elemento da lista não estiver com foco
-                  /*setIsOpenSelect((prevState) => {
-                    if (prevState) {
-                      return false; 
-                    }
-                    return false;
-                  });
-                  */
                 }}
                 role="listbox"
                 aria-expanded={isOpenSelect}
@@ -118,13 +93,11 @@ export default function FormSearch(props) {
                         key={index}
                         onPointerDown={(event) => {
                           setValueSelectedFilter(region);
-                          //props.setRegionFiltered(region);
                           props.onFilteredRegion(region);
                         }}
                         onKeyDown={(event) => {
                           if (event.code === "Enter") {
                             setValueSelectedFilter(region);
-                            //props.setRegionFiltered(region);
                             props.onFilteredRegion(region);
                           }
                         }}
