@@ -18,6 +18,12 @@
   text-decoration: none;
 }
 
+.main__Message{
+  color: var(--color-text);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
 @media screen and (min-width: 550px) {
   .main__List-Countries {
     gap: 76px;

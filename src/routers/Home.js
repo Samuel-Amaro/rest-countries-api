@@ -7,41 +7,68 @@ import { useState } from "react";
 import "./Home.css";
 
 export async function loader({ request }) {
-  //se tiver informado query de search, obtem o termo de pesquisa
-  const url = new URL(request.url);
-  const q = url.searchParams.get("q");
-  let typeQuery = { type: "", value: "" };
-  //se termo de pesquisa existir
-  if (q) {
-    typeQuery.type = "name";
-    typeQuery.value = q;
-  } else {
-    //se o termo de pesquisa não existir
-    typeQuery.type = "all";
-    typeQuery.value = "all";
-  }
-  const allCountries = await getCountries(typeQuery);
-  return { countrys: allCountries, search: q };
+  const allCountries = await getCountries({ type: "all", value: "all" });
+  return { countrys: allCountries };
 }
 
 export default function Home() {
   const datas = useLoaderData();
   const [regionFiltered, setRegionFiltered] = useState("All");
-  //console.log(datas);
+  const [search, setSearch] = useState("");
+  const [filteredResultsCountrys, setFilteredResultsCountrys] = useState(
+    datas.countrys
+  );
+
+  function onSearchCountrys(search) {
+    setSearch(search);
+    //se possuir pesquisa, e ja tiver filtrado uma região realiza pesquisa dentro da região
+    if (search !== "" && regionFiltered.toLowerCase() !== "all") {
+      const filteredsCountrysRegion = filteredResultsCountrys.filter((country) => {
+        return country.name.common.toLowerCase().match(search.toLowerCase());
+      });
+      setFilteredResultsCountrys(filteredsCountrysRegion);
+      //se não pesquisa em todas regioes
+    }else if(search !== "" && regionFiltered.toLowerCase() === "all") {
+      const filteredsCountrys = datas.countrys.filter((country) => {
+        return country.name.common.toLowerCase().match(search.toLowerCase());
+      });
+      setFilteredResultsCountrys(filteredsCountrys);
+      //se ja estiver apagando pesquisa e tiver filtro de região aplicado permanece no mesmo
+    }else if (search === "" && regionFiltered.toLowerCase() !== "all") {
+      onFilteredRegion(regionFiltered);
+      //se não pesquisa em todas regioes
+    }else{
+      setFilteredResultsCountrys(datas.countrys);
+    }
+  }
+
+  function onFilteredRegion(region) {
+    setRegionFiltered(region);
+    if (region.toLowerCase() !== "all") {
+      const regionFilteredResult = datas.countrys.filter((country) => {
+        return country.region.toLowerCase() === region.toLowerCase();
+      });
+      setFilteredResultsCountrys(regionFilteredResult);
+    }else{
+      setFilteredResultsCountrys(datas.countrys);
+    }
+  }
+
   return (
     <>
       <Header />
-      <FormSearch searchTerm={datas.search ? datas.search : ""} setRegionFiltered={setRegionFiltered}/>
-      {datas.countrys ? (
+      <FormSearch
+        searchTerm={datas.search ? datas.search : ""}
+        setRegionFiltered={setRegionFiltered}
+        onSearchCountrys={onSearchCountrys}
+        onFilteredRegion={onFilteredRegion}
+        search={search}
+        setSearch={setSearch}
+      />
+      {
         <ul className="main__List-Countries" aria-label="List from countrys">
-          {
-            datas.countrys.filter((countriObj) => {
-              //console.log(countriObj);
-              if (countriObj.region.toLowerCase() === regionFiltered.toLowerCase()) 
-                return true;
-              if(regionFiltered.toLowerCase() === "all")
-                return true;
-            }).map((countriObj, index) => {
+          {filteredResultsCountrys.length > 0 ? (
+            filteredResultsCountrys.map((countriObj, index) => {
               return (
                 <li className="main__Item-List" key={index}>
                   <NavLink
@@ -67,11 +94,11 @@ export default function Home() {
                 </li>
               );
             })
-          }
+          ) : (
+            <p className="main__Message">There are no countries with that name</p>
+          )}
         </ul>
-      ) : (
-        <p>There are no countries with that name</p>
-      )}
+      }
     </>
   );
 }

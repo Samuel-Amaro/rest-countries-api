@@ -14,8 +14,8 @@ export default function FormSearch(props) {
   const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania", "All"];
 
   useEffect(() => {
-    refInputSearch.current.value = props.searchTerm;
-  }, [props.searchTerm]);
+    refInputSearch.current.value = props.search;
+  }, [props.search]);
 
   return (
     <ThemeContext.Consumer>
@@ -26,21 +26,25 @@ export default function FormSearch(props) {
               <input
                 type="search"
                 ref={refInputSearch}
-                defaultValue={props.searchTerm}
+                /*defaultValue={props.searchTerm}*/
+                defaultValue={props.search}
                 className={
                   theme === "light"
                     ? "form__Input form__input_theme--light"
                     : "form__Input form__input_theme--dark"
                 }
-                name="q"
+                /*name="q"*/
                 placeholder="Search for a country..."
                 title="Search for a country..."
                 aria-label="Search for a country..."
                 onChange={(event) => {
-                  const isFirstSearch = props.searchTerm === "";
+                  /*const isFirstSearch = props.searchTerm === "";
                   submit(event.currentTarget.form, {
                     replace: !isFirstSearch,
                   });
+                  */
+                  //props.setSearch(event.target.value);
+                  props.onSearchCountrys(event.target.value);
                 }}
               />
             </div>
@@ -114,12 +118,14 @@ export default function FormSearch(props) {
                         key={index}
                         onPointerDown={(event) => {
                           setValueSelectedFilter(region);
-                          props.setRegionFiltered(region);
+                          //props.setRegionFiltered(region);
+                          props.onFilteredRegion(region);
                         }}
                         onKeyDown={(event) => {
                           if (event.code === "Enter") {
                             setValueSelectedFilter(region);
-                            props.setRegionFiltered(region);
+                            //props.setRegionFiltered(region);
+                            props.onFilteredRegion(region);
                           }
                         }}
                       >
