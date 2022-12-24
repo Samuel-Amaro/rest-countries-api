@@ -171,18 +171,6 @@ export default function CountriDetail() {
             </div>
           </article>
         </section>
-        {/*<React.Suspense fallback={<p>Loading country details...</p>}>
-          <Await
-            resolve={data.country}
-            errorElement={<p>Error loading country details...!</p>}
-          >
-            {(country) => {
-              return (
-              );
-            }}
-          </Await>
-        </React.Suspense>
-          */}
       </div>
     </>
   );
