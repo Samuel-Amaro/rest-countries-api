@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import Home, { loader as loaderHome } from "../routers/Home";
 import CountriDetail, {
   loader as loaderCountriDetail,
@@ -7,7 +7,8 @@ import { ThemeContext } from "./ThemeContext";
 import { useState } from "react";
 import ErrorPage from "../routers/ErrorPage";
 
-const router = createBrowserRouter([
+/*Obs: deployment in gitHub pages não pode usar createBrowserRouter -> createBrowserRouter([]), temos que usar createHashRouter createBrowserRouter([])*/
+const router = createHashRouter([
   {
     path: "/",
     element: <Home />,
