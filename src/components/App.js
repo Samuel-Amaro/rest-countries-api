@@ -5,12 +5,14 @@ import CountriDetail, {
 } from "../routers/CountriDetail";
 import { ThemeContext } from "./ThemeContext";
 import { useState } from "react";
+import ErrorPage from "../routers/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
     loader: loaderHome,
+    errorElement: <ErrorPage />
   },
   {
     path: "/country/:countriName",
