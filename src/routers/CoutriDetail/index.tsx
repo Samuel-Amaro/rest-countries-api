@@ -1,21 +1,33 @@
-import { NavLink, useLoaderData} from "react-router-dom";
-import getCountries from "../api/api";
-import Header from "../components/Header";
+import { NavLink, useLoaderData, LoaderFunctionArgs } from "react-router-dom";
+import getCountries from "../../api/api";
+import Header from "../../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
-import formatNumber from "../utils/format-number";
+import formatNumber from "../../utils/format-number";
 import "./CountriDetail.css";
+import { Countrie, Currencies, Languages } from "../../api/IDataCountries";
 
-export async function loader({ params }) {
+export async function loader({ params }: LoaderFunctionArgs) {
   //busca country details
   const country = await getCountries({
     type: "name",
-    value: params.countriName,
+    value: params.countriName as string,
   });
-  let bordersCountrys = [];
+
+  let bordersCountrys: Countrie[] = [];
+
+  if (country.length > 0) {
+    if ("borders" in country[0]) {
+      bordersCountrys = await getCountries({
+        type: "code",
+        value: country[0].borders,
+      });
+    }
+  }
+
   //se possuir borders, busca nome dos country borders
-  if (!(country[0]?.borders === undefined)) {
+  /*if (!(country[0]?.borders === undefined)) {
     bordersCountrys = await getCountries({
       type: "code",
       value: country[0].borders,
@@ -26,7 +38,8 @@ export async function loader({ params }) {
       });
       return countrysBorders;
     });
-  }
+  }*/
+
   return {
     country: country[0],
     borders: bordersCountrys,
@@ -34,10 +47,13 @@ export async function loader({ params }) {
 }
 
 export default function CountriDetail() {
-  const { country, borders } = useLoaderData();
+  const { country, borders } = useLoaderData() as {
+    country: Countrie;
+    borders: Countrie[];
+  };
 
   //buscar currencies valores encontrados na propriedade currencie
-  function foundCurrencies(currencies) {
+  function foundCurrencies(currencies: Currencies) {
     const currenciesFound = [];
     for (const prop in currencies) {
       if (typeof currencies[prop] === "object") {
@@ -52,7 +68,7 @@ export default function CountriDetail() {
   }
 
   //buscar languages valores encontrados na propriedade language
-  function foundLanguages(languages) {
+  function foundLanguages(languages: Languages) {
     const languagesArray = [];
     for (const prop in languages) {
       languagesArray.push(languages[prop]);
@@ -110,7 +126,9 @@ export default function CountriDetail() {
                 <p className="main__Data">
                   <span className="main__Relevant-Info">Capital:</span>
                   <span className="main__Value-Info">
-                    {country?.capital === undefined ? "No capital" : country.capital}
+                    {country?.capital === undefined
+                      ? "No capital"
+                      : country.capital}
                   </span>
                 </p>
               </div>
@@ -142,7 +160,9 @@ export default function CountriDetail() {
               {
                 /*propriedadde border pode existir ou não dependendo do country selected*/
                 borders.length === 0 ? (
-                  <span className="main__Message-Countries-Borders">No countries on the border</span>
+                  <span className="main__Message-Countries-Borders">
+                    No countries on the border
+                  </span>
                 ) : (
                   <ul
                     className="main__List-Countries-Borders"
@@ -150,17 +170,21 @@ export default function CountriDetail() {
                   >
                     {borders.map((border, index) => {
                       return (
-                        <li className="main__Item-Border-Countri" key={index} tabIndex="0">
+                        <li
+                          className="main__Item-Border-Countri"
+                          key={index}
+                          tabIndex={0}
+                        >
                           <NavLink
-                            to={`/country/${border.name}`}
+                            to={`/country/${border.name.common}`}
                             className="main__Item-Link-Border"
                             rel="next"
                             target="_self"
-                            aria-label={`Go to details page and learn more about this ${border.name} country`}
+                            aria-label={`Go to details page and learn more about this ${border.name.common} country`}
                             title={`Go to details page and learn more about this ${border.name} country`}
-                            tabIndex="0"
+                            tabIndex={0}
                           >
-                            {border.name}
+                            {border.name.common}
                           </NavLink>
                         </li>
                       );

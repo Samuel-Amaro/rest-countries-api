@@ -1,27 +1,38 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
-import { Form} from "react-router-dom";
+import { Form } from "react-router-dom";
 import { useState } from "react";
 import "./Form.css";
-import { ThemeContext } from "./ThemeContext";
+import { useThemeContext } from "../../context/ThemeContext";
 
-export default function FormSearch(props) {
+interface PropsFormSearch {
+  onSearchCountrys: (search: any) => void;
+  onFilteredRegion: (region: any) => void;
+  search: string;
+}
+
+export default function FormSearch({
+  onSearchCountrys,
+  onFilteredRegion,
+  search,
+}: PropsFormSearch) {
   const [isOpenSelect, setIsOpenSelect] = useState(false);
   const [valueSelectedFilter, setValueSelectedFilter] =
     useState("Filter by Region");
   const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania", "All"];
+  const themeContext = useThemeContext();
 
   return (
-    <ThemeContext.Consumer>
+    /*<ThemeContext.Consumer>
       {({ theme, toggleTheme }) => {
-        return (
+        return (*/
           <Form className="Form" role="search ou filter countrys">
             <div className="form__Group">
               <input
                 type="search"
-                value={props.search}
+                value={search}
                 className={
-                  theme === "light"
+                  themeContext.theme === "light"
                     ? "form__Input form__input_theme--light"
                     : "form__Input form__input_theme--dark"
                 }
@@ -29,7 +40,7 @@ export default function FormSearch(props) {
                 title="Search for a country..."
                 aria-label="Search for a country..."
                 onChange={(event) => {
-                  props.onSearchCountrys(event.target.value);
+                  onSearchCountrys(event.target.value);
                 }}
               />
             </div>
@@ -40,7 +51,7 @@ export default function FormSearch(props) {
                     ? "form__Select form__select_active"
                     : "form__Select"
                 }
-                tabIndex="0"
+                tabIndex={0}
                 aria-label="Filter by Region"
                 title="Filter by Region"
                 onPointerDown={(event) => {
@@ -88,17 +99,17 @@ export default function FormSearch(props) {
                         aria-selected={
                           valueSelectedFilter === region ? "true" : "false"
                         }
-                        tabIndex="0"
+                        tabIndex={0}
                         title={`Option region ${region}`}
                         key={index}
                         onPointerDown={(event) => {
                           setValueSelectedFilter(region);
-                          props.onFilteredRegion(region);
+                          onFilteredRegion(region);
                         }}
                         onKeyDown={(event) => {
                           if (event.code === "Enter") {
                             setValueSelectedFilter(region);
-                            props.onFilteredRegion(region);
+                            onFilteredRegion(region);
                           }
                         }}
                       >
@@ -110,8 +121,8 @@ export default function FormSearch(props) {
               </div>
             </div>
           </Form>
-        );
+        /*);
       }}
-    </ThemeContext.Consumer>
+    </ThemeContext.Consumer>*/
   );
 }
