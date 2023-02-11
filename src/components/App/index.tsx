@@ -1,5 +1,8 @@
-import { createHashRouter, RouterProvider } from "react-router-dom";
-import Home, { loader as loaderHome } from "../../routers/Home";
+import {
+  createHashRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Home, { loader as loaderHome } from "../../routers/Root";
 import CountriDetail, {
   loader as loaderCountriDetail,
 } from "../../routers/CoutriDetail";
@@ -7,6 +10,7 @@ import ErrorPage from "../../routers/ErrorPage";
 import { ThemeContextProvider } from "../../context/ThemeContext";
 
 /*Obs: deployment in gitHub pages não pode usar createBrowserRouter -> createBrowserRouter([]), temos que usar createHashRouter createBrowserRouter([])*/
+
 const router = createHashRouter([
   {
     path: "/",
@@ -18,10 +22,12 @@ const router = createHashRouter([
     path: "/country/:countriName",
     element: <CountriDetail />,
     loader: loaderCountriDetail,
+    errorElement: <ErrorPage />,
   },
 ]);
 
-export default function App() {  
+
+export default function App() {
   /*const [theme, toggleTheme] = useTheme();*/
 
   /*function toggleTheme(themeOption: string) {

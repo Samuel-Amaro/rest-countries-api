@@ -26,6 +26,7 @@
   --color-text: var(--very-dark-blue-02);
   --color-input: var(--dark-gray);
   --color-option-selected: #858585;
+  --icon-input-search: #858585;
 }
 
 body {
@@ -44,6 +45,7 @@ body {
   --color-background: var(--very-dark-blue-01);
   --color-text: var(--white);
   --color-input: var(--white);
+  --icon-input-search: var(--white);
 }
 
 /*****BREAKPOINT 960px to DEDSKTOP LAYOUT*****/

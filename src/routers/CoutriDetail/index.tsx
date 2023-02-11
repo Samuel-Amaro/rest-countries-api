@@ -1,16 +1,15 @@
 import { NavLink, useLoaderData, LoaderFunctionArgs } from "react-router-dom";
-import getCountries from "../../api/api";
+import { getCountryByName, getCountrysByCodes } from "../../api/api";
 import Header from "../../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
 import formatNumber from "../../utils/format-number";
 import "./CountriDetail.css";
 import { Countrie, Currencies, Languages } from "../../api/IDataCountries";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   //busca country details
-  const country = await getCountries({
+  /*const country = await getCountries({
     type: "name",
     value: params.countriName as string,
   });
@@ -24,6 +23,20 @@ export async function loader({ params }: LoaderFunctionArgs) {
         value: country[0].borders,
       });
     }
+  }*/
+
+  const country = await getCountryByName(params.countriName as string);
+  let bordersCountrys: Countrie[] = [];
+
+  if (!country) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+
+  if ("borders" in country) {
+    bordersCountrys = await getCountrysByCodes(country.borders);
   }
 
   //se possuir borders, busca nome dos country borders
@@ -41,7 +54,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   }*/
 
   return {
-    country: country[0],
+    country: country,
     borders: bordersCountrys,
   };
 }
@@ -93,35 +106,55 @@ export default function CountriDetail() {
         </NavLink>
         <section className="main__Content-Detail">
           <aside className="main__Side-Content">
-            <img
-              src={country.flags.svg}
-              alt={`Ilustration flag from ${country.name.common}`}
-              className="main__Ilustration-Countri"
-            />
+            {country?.flags === undefined ? (
+              "Not imagen ilustration country"
+            ) : (
+              <img
+                src={country.flags.svg}
+                alt={`Ilustration flag from ${country.name.common}`}
+                className="main__Ilustration-Countri"
+              />
+            )}
           </aside>
           <article className="main__Detail">
-            <h2 className="main__Name-Countri">{country.name.common}</h2>
+            <h2 className="main__Name-Countri">
+              {country?.name === undefined
+                ? "Not name country"
+                : country.name.common}
+            </h2>
             <div className="main__Container">
               <div className="main__Container-Side">
                 <p className="main__Data">
                   <span className="main__Relevant-Info">Native Name:</span>
                   <span className="main__Value-Info">
-                    {country.name.official}
+                    {country?.name === undefined
+                      ? "Not native name"
+                      : country.name.official}
                   </span>
                 </p>
                 <p className="main__Data">
                   <span className="main__Relevant-Info">Population:</span>
                   <span className="main__Value-Info">
-                    {formatNumber(country.population)}
+                    {country?.population === undefined
+                      ? "Not population"
+                      : formatNumber(country.population)}
                   </span>
                 </p>
                 <p className="main__Data">
                   <span className="main__Relevant-Info">Region:</span>
-                  <span className="main__Value-Info">{country.region}</span>
+                  <span className="main__Value-Info">
+                    {country?.region === undefined
+                      ? "Not region"
+                      : country.region}
+                  </span>
                 </p>
                 <p className="main__Data">
                   <span className="main__Relevant-Info">Sub Region:</span>
-                  <span className="main__Value-Info">{country.subregion}</span>
+                  <span className="main__Value-Info">
+                    {country?.subregion === undefined
+                      ? "Not subregion"
+                      : country.subregion}
+                  </span>
                 </p>
                 <p className="main__Data">
                   <span className="main__Relevant-Info">Capital:</span>
@@ -136,19 +169,25 @@ export default function CountriDetail() {
                 <p className="main__Data">
                   <span className="main__Relevant-Info">Top Level Domain:</span>
                   <span className="main__Value-Info">
-                    {country.tld.join(", ")}
+                    {country?.tld === undefined
+                      ? "No Top Level Domain"
+                      : country.tld.join(", ")}
                   </span>
                 </p>
                 <p className="main__Data">
                   <span className="main__Relevant-Info">Currencies:</span>
                   <span className="main__Value-Info">
-                    {foundCurrencies(country.currencies).join(", ")}
+                    {country?.currencies === undefined
+                      ? "Not currencies"
+                      : foundCurrencies(country.currencies).join(", ")}
                   </span>
                 </p>
                 <p className="main__Data">
                   <span className="main__Relevant-Info">Languages:</span>
                   <span className="main__Value-Info">
-                    {foundLanguages(country.languages).join(", ")}
+                    {country?.languages === undefined
+                      ? "Not Languages"
+                      : foundLanguages(country.languages).join(", ")}
                   </span>
                 </p>
               </div>
@@ -158,7 +197,6 @@ export default function CountriDetail() {
                 Border Countries:
               </span>
               {
-                /*propriedadde border pode existir ou não dependendo do country selected*/
                 borders.length === 0 ? (
                   <span className="main__Message-Countries-Borders">
                     No countries on the border
@@ -181,7 +219,7 @@ export default function CountriDetail() {
                             rel="next"
                             target="_self"
                             aria-label={`Go to details page and learn more about this ${border.name.common} country`}
-                            title={`Go to details page and learn more about this ${border.name} country`}
+                            title={`Go to details page and learn more about this ${border.name.common} country`}
                             tabIndex={0}
                           >
                             {border.name.common}

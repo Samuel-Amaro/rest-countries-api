@@ -5,13 +5,28 @@ const QUERY_ALL = "/all";
 const QUERY_NAME = "/name/";
 const QUERY_CODE = "/alpha?codes=";
 
-interface queryParams {
+/*interface queryParams {
     type: string,
     value: string | string[]
-};
+};*/
 
-export default async function getCountries({type, value}: queryParams) {
-    let url = URL_BASE;
+export async function fetchDatas(url: string) {
+    let datas: Countrie[] = [];
+    try {
+        let response = await fetch(url);
+        if(response.ok) {
+            datas = await response.json();
+            return datas;
+        }
+        throw response;
+    } catch (error) {
+        console.log("Error in fetching data: " + error);
+        return datas;
+    }
+}
+
+export default async function getCountries(/*{type, value}: queryParams*/) {
+    /*let url = URL_BASE;
     let datas: Countrie[] = [];
     if(type === "all") {
         url += QUERY_ALL;
@@ -32,5 +47,21 @@ export default async function getCountries({type, value}: queryParams) {
     } catch (error) {
         console.log("Error in fetching data: " + error);
         return datas;
+    }*/
+    let url = URL_BASE + QUERY_ALL;
+    return await fetchDatas(url);
+}
+
+export async function getCountryByName(name: string) {
+    let url = URL_BASE + QUERY_NAME + name;
+    let data = await fetchDatas(url);
+    if(data.length > 0 && data.length === 1) {
+       return data[0]; 
     }
+    return null;
+}
+
+export async function getCountrysByCodes(codes: string[]) {
+    let url = URL_BASE + QUERY_CODE + codes.join(",");
+    return await fetchDatas(url);
 }

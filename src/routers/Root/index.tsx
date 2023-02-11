@@ -8,18 +8,18 @@ import "./Home.css";
 import { Countrie } from "../../api/IDataCountries";
 
 export async function loader() {
-  const allCountries = await getCountries({ type: "all", value: "all" });
+  const allCountries = await getCountries(/*{ type: "all", value: "all" }*/);
   /*return { countrys: allCountries }*/
   return allCountries;
 }
 
-export default function Home() {
+export default function Root() {
   const datas = useLoaderData() as Countrie[];
   const [regionFiltered, setRegionFiltered] = useState<string>("All");
   const [search, setSearch] = useState<string>("");
   const [filteredResultsCountrys, setFilteredResultsCountrys] = useState(datas);
 
-  function onSearchCountrys(search: any) {
+  function onSearchCountrys(search: string) {
     setSearch(search);
     //se possuir pesquisa, e ja tiver filtrado uma região realiza pesquisa dentro da região
     if (search !== "" && regionFiltered.toLowerCase() !== "all") {
@@ -44,7 +44,7 @@ export default function Home() {
     }
   }
 
-  function onFilteredRegion(region: any) {
+  function onFilteredRegion(region: string) {
     setRegionFiltered(region);
     if (region.toLowerCase() !== "all") {
       const regionFilteredResult = datas /*.countrys*/
