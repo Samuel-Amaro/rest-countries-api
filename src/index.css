@@ -27,6 +27,10 @@
   --color-input: var(--dark-gray);
   --color-option-selected: #858585;
   --icon-input-search: #858585;
+  --box-shadow-focus: rgba(0, 0, 0, 0.2);
+  --box-shadow-normal: rgba(0, 0, 0, 0.2);
+  --bg-select-hover-option: var(--dark-gray);
+  --color-select-option-current: var(--dark-blue);
 }
 
 body {
@@ -46,6 +50,9 @@ body {
   --color-text: var(--white);
   --color-input: var(--white);
   --icon-input-search: var(--white);
+  --box-shadow-focus: rgba(256, 256, 256, 0.8);
+  --box-shadow-normal: transparent;
+  --color-select-option-current: rgba(256, 256, 256, 0.8);
 }
 
 /*****BREAKPOINT 960px to DEDSKTOP LAYOUT*****/

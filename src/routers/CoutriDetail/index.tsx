@@ -35,8 +35,8 @@ export async function loader({ params }: LoaderFunctionArgs) {
     });
   }
 
-  if ("borders" in country) {
-    bordersCountrys = await getCountrysByCodes(country.borders);
+  if ("borders" in country[0]) {
+    bordersCountrys = await getCountrysByCodes(country[0].borders);
   }
 
   //se possuir borders, busca nome dos country borders
@@ -54,7 +54,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   }*/
 
   return {
-    country: country,
+    country: country[0],
     borders: bordersCountrys,
   };
 }

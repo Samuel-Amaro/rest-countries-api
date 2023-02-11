@@ -55,8 +55,8 @@ export default async function getCountries(/*{type, value}: queryParams*/) {
 export async function getCountryByName(name: string) {
     let url = URL_BASE + QUERY_NAME + name;
     let data = await fetchDatas(url);
-    if(data.length > 0 && data.length === 1) {
-       return data[0]; 
+    if(data.length > 0) {
+       return data; 
     }
     return null;
 }

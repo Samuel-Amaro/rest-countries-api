@@ -1,0 +1,116 @@
+/*.label{
+    display: block;
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+}*/
+
+.select {
+  /*max-width: 400px;
+    position: relative;
+    cursor: pointer;
+    */
+  box-shadow: 0.2px 0.2px 10px 1px var(--box-shadow-normal);
+  background-color: var(--color-elements);
+  position: relative;
+  font-size: 1.2rem;
+  color: var(--color-text);
+  font-weight: 600;
+  border-radius: 7px;
+  width: auto;
+  cursor: pointer;
+}
+
+.select__input {
+  background-color: var(--color-elements);
+  border-radius: 4px;
+  text-align: left;
+  width: 100%;
+  padding: 2.1rem 2rem 2.1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.select__input:focus,
+.select__input:hover {
+  border-color: var(--border-color-select-input);
+  box-shadow: 0 0 14px 2px var(--box-shadow-focus);
+  outline: 4px solid transparent;
+}
+
+/*.select-combo--open .select__combo-input {
+  border-radius: 4px 4px 0 0;
+}*/
+
+.select__menu {
+  background-color: var(--color-elements);
+  border-radius: 0 0 4px 4px;
+  display: none;
+  overflow-y: scroll;
+  left: 0;
+  position: absolute;
+  top: 107%;
+  width: 100%;
+  z-index: 1100;
+  box-shadow: 0.2px 0.2px 10px 1px var(--box-shadow-focus);
+  border-radius: 7px;
+  padding: 2.09rem 2.9rem 2.1rem 2.9rem;
+}
+
+.select--open .select__menu {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.select__option {
+  padding: 0;
+}
+
+.select__option:hover {
+  color: var(--bg-select-hover-option);
+}
+
+.select__option--selected {
+  border-bottom: 3px solid var(--color-select-option-current);
+}
+
+@media screen and (min-width: 550px) {
+  .select {
+    font-size: 1.5rem;
+    width: 406px;
+  }
+
+  .select__input {
+    padding: 2.1rem 2.5rem 2.1rem 3.05rem;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .select {
+    font-size: 0.9rem;
+    border-radius: 5px;
+    width: 200px;
+  }
+
+  .form__Icon-Select {
+    font-size: 0.8rem;
+  }
+
+  .select__input {
+    padding: 1.25rem 1.3rem 1.25rem 1.4rem;
+  }
+
+  .select__menu {
+    padding: 1.1rem 1.5rem 1.1rem 1.5rem;
+  }
+
+  .select--open .select__menu {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    gap: 11.5px;
+  }
+}

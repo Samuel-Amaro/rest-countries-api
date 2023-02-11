@@ -1,9 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleDown,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 import { Form } from "react-router-dom";
 import { useState } from "react";
 import "./Form.css";
 import { useThemeContext } from "../../context/ThemeContext";
+import Select from "../Select";
 
 interface PropsFormSearch {
   onSearchCountrys: (search: string) => void;
@@ -40,11 +44,7 @@ export default function FormSearch({
           <input
             type="search"
             value={search}
-            className={
-              themeContext.theme === "light"
-                ? "form__Input form__input_theme--light"
-                : "form__Input form__input_theme--dark"
-            }
+            className={"form__Input"}
             placeholder="Search for a country..."
             title="Search for a country..."
             aria-label="Search for a country..."
@@ -55,7 +55,7 @@ export default function FormSearch({
         </div>
       </div>
       <div className="form__Group">
-        <div
+        {/*<div
           className={
             isOpenSelect ? "form__Select form__select_active" : "form__Select"
           }
@@ -123,7 +123,8 @@ export default function FormSearch({
               );
             })}
           </ul>
-        </div>
+        </div>*/}
+        <Select optionsSelect={regions} onFilteredRegion={onFilteredRegion} />
       </div>
     </Form>
     /*);

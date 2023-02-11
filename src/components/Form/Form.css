@@ -44,6 +44,7 @@
   font-weight: 300;
   padding: 32px 30px 32px 45px;
   border-radius: 7px;
+  box-shadow: 0.5px 0.5px 10px 2px var(--box-shadow-normal);
   max-width: 690px;
   width: 100%;
 }
@@ -53,14 +54,14 @@
 }
 
 .form__Input:focus {
-  box-shadow: 1.5px 1.5px 18px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0.9px 0.9px 9px 2px var(--box-shadow-focus);
   outline: none;
 }
 
-.form__input_theme--light {
-  /*background-image: url("../../icons/lupa-light.svg");*/
+/*.form__input_theme--light {
+  background-image: url("../../icons/lupa-light.svg");
   box-shadow: 0.5px 0.5px 15px 2px rgba(0, 0, 0, 0.1);
-}
+}*/
 
 /*
 .form__input_theme--dark {
@@ -72,6 +73,7 @@
   margin: 0 0 80px 0;
 }
 
+/*
 .form__Select {
   box-shadow: 0.2px 0.2px 10px 1px rgba(0, 0, 0, 0.1);
   background-color: var(--color-elements);
@@ -135,6 +137,7 @@
 .form__Option {
   cursor: pointer;
 }
+*/
 
 /*****TABLETS*****/
 @media screen and (min-width: 550px) {
@@ -156,11 +159,11 @@
     padding: 0 0 0 150px;
   }*/
 
-  .form__Select {
+  /*.form__Select {
     font-size: 1.5rem;
     padding: 2.1rem 2.5rem 2.1rem 3.05rem;
     width: 406px;
-  }
+  }*/
 }
 
 /*****BREAKPOINT 960px TO DESKTOP LAYOUT*****/
@@ -199,7 +202,7 @@
     margin: 0;
   }
 
-  .form__Select {
+  /*.form__Select {
     font-size: 0.9rem;
     padding: 1.25rem 1.3rem 1.25rem 1.4rem;
     border-radius: 5px;
@@ -215,5 +218,5 @@
     border-radius: 4px;
     padding: 1.1rem 1.5rem 1.1rem 1.5rem;
     gap: 11.5px;
-  }
+  }*/
 }
