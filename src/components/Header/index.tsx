@@ -10,9 +10,6 @@ export default function Header() {
   return (
     <header className="Header">
       <h1 className="header__Title">Where in the world?</h1>
-      {/*<ThemeContext.Consumer>
-        {({ theme, toggleTheme }) => (
-        */}
       <button
         className="header__Btn-Toggle-Theme"
         type="button"
@@ -22,14 +19,12 @@ export default function Header() {
           themeContext.setTheme(
             themeContext.theme === "light" ? "dark" : "light"
           );
-          //themeContext.toggleDataTheme(theme === "light" ? "dark" : "light");
         }}
         onKeyDown={(event) => {
           if (event.code === "Enter") {
             themeContext.setTheme(
               themeContext.theme === "light" ? "dark" : "light"
             );
-            //toggleDataTheme(theme === "light" ? "dark" : "light");
           }
         }}
       >
@@ -41,8 +36,6 @@ export default function Header() {
         }
         Dark Mode
       </button>
-      {/*</header>)}
-      </ThemeContext.Consumer>*/}
     </header>
   );
 }

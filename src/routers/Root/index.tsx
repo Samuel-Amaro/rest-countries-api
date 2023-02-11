@@ -8,8 +8,7 @@ import "./Home.css";
 import { Countrie } from "../../api/IDataCountries";
 
 export async function loader() {
-  const allCountries = await getCountries(/*{ type: "all", value: "all" }*/);
-  /*return { countrys: allCountries }*/
+  const allCountries = await getCountries();
   if (!allCountries) {
     throw new Response("", {
       status: 404,
@@ -71,7 +70,7 @@ export default function Root() {
         search={search}
       />
       {
-        <ul className="main__List-Countries" aria-label="List from countrys">
+        <ul className="main__List-Countries" aria-label="List from countrys" aria-live="assertive" aria-relevant="all">
           {filteredResultsCountrys.length > 0 ? (
             filteredResultsCountrys.map(
               (countriObj, index) => {

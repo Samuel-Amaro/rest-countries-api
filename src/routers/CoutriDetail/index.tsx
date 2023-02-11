@@ -9,22 +9,6 @@ import { Countrie, Currencies, Languages } from "../../api/IDataCountries";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   //busca country details
-  /*const country = await getCountries({
-    type: "name",
-    value: params.countriName as string,
-  });
-
-  let bordersCountrys: Countrie[] = [];
-
-  if (country.length > 0) {
-    if ("borders" in country[0]) {
-      bordersCountrys = await getCountries({
-        type: "code",
-        value: country[0].borders,
-      });
-    }
-  }*/
-
   const country = await getCountryByName(params.countriName as string);
   let bordersCountrys: Countrie[] = [];
 
@@ -36,23 +20,13 @@ export async function loader({ params }: LoaderFunctionArgs) {
   }
 
   if ("borders" in country[0]) {
-    bordersCountrys = await getCountrysByCodes(country[0].borders);
+    const datasCountrysBorders = await getCountrysByCodes(country[0].borders);
+    if(datasCountrysBorders) {
+      bordersCountrys = datasCountrysBorders;
+    }
   }
 
   //se possuir borders, busca nome dos country borders
-  /*if (!(country[0]?.borders === undefined)) {
-    bordersCountrys = await getCountries({
-      type: "code",
-      value: country[0].borders,
-    }).then((result) => {
-      let countrysBorders = [];
-      result.forEach((country) => {
-        countrysBorders.push({ name: country.name.common });
-      });
-      return countrysBorders;
-    });
-  }*/
-
   return {
     country: country[0],
     borders: bordersCountrys,
@@ -196,40 +170,38 @@ export default function CountriDetail() {
               <span className="main__Relevant-Info main__Relevante-Info_Text--Big">
                 Border Countries:
               </span>
-              {
-                borders.length === 0 ? (
-                  <span className="main__Message-Countries-Borders">
-                    No countries on the border
-                  </span>
-                ) : (
-                  <ul
-                    className="main__List-Countries-Borders"
-                    aria-label="List from countrys borders"
-                  >
-                    {borders.map((border, index) => {
-                      return (
-                        <li
-                          className="main__Item-Border-Countri"
-                          key={index}
+              {borders.length === 0 ? (
+                <span className="main__Message-Countries-Borders">
+                  No countries on the border
+                </span>
+              ) : (
+                <ul
+                  className="main__List-Countries-Borders"
+                  aria-label="List from countrys borders"
+                >
+                  {borders.map((border, index) => {
+                    return (
+                      <li
+                        className="main__Item-Border-Countri"
+                        key={index}
+                        tabIndex={0}
+                      >
+                        <NavLink
+                          to={`/country/${border.name.common}`}
+                          className="main__Item-Link-Border"
+                          rel="next"
+                          target="_self"
+                          aria-label={`Go to details page and learn more about this ${border.name.common} country`}
+                          title={`Go to details page and learn more about this ${border.name.common} country`}
                           tabIndex={0}
                         >
-                          <NavLink
-                            to={`/country/${border.name.common}`}
-                            className="main__Item-Link-Border"
-                            rel="next"
-                            target="_self"
-                            aria-label={`Go to details page and learn more about this ${border.name.common} country`}
-                            title={`Go to details page and learn more about this ${border.name.common} country`}
-                            tabIndex={0}
-                          >
-                            {border.name.common}
-                          </NavLink>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                )
-              }
+                          {border.name.common}
+                        </NavLink>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
             </div>
           </article>
         </section>

@@ -28,22 +28,7 @@ const router = createHashRouter([
 
 
 export default function App() {
-  /*const [theme, toggleTheme] = useTheme();*/
-
-  /*function toggleTheme(themeOption: string) {
-    setTheme((previosState) => {
-      return {
-        theme: themeOption,
-        toggleTheme: previosState.toggleTheme,
-      };
-    });
-  }*/
-
   return (
-    /*<ThemeContext.Provider value={{theme, toggleTheme}}>
-      <RouterProvider router={router} />
-    </ThemeContext.Provider>
-    */
     <ThemeContextProvider>
       <RouterProvider router={router} />
     </ThemeContextProvider>

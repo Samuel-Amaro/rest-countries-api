@@ -2,7 +2,6 @@ import React, {useState, useContext, useEffect} from "react";
 
 type ThemeContextType = {
     theme: string;
-    /*toggleTheme: (themeOption: string) => void*/
     setTheme: React.Dispatch<React.SetStateAction<string>>;
 };
 
