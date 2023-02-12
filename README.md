@@ -54,7 +54,7 @@ Users should be able to:
 - CSS Grid
 - Mobile-first workflow
 - Responsive Web Design(RWD)
-- JavaScript Programming Language
+- Typescript
 - [React](https://reactjs.org/) - JS library
   - [Hooks React](https://reactjs.org/docs/hooks-intro.html) - Hooks(useState)
   - [Context API](https://reactjs.org/docs/context.html) - Context API
