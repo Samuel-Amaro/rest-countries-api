@@ -1,15 +1,13 @@
 {
   "files": {
-    "main.css": "/rest-countries-api/static/css/main.4386a71c.css",
-    "main.js": "/rest-countries-api/static/js/main.8ba001b2.js",
+    "main.css": "/rest-countries-api/static/css/main.389d83fd.css",
+    "main.js": "/rest-countries-api/static/js/main.27bb3f19.js",
     "index.html": "/rest-countries-api/index.html",
-    "static/media/lupa-light.svg": "/rest-countries-api/static/media/lupa-light.6ebc4d5094d938dff45a.svg",
-    "static/media/lupa-dark.svg": "/rest-countries-api/static/media/lupa-dark.b5b35324f96ff612e841.svg",
-    "main.4386a71c.css.map": "/rest-countries-api/static/css/main.4386a71c.css.map",
-    "main.8ba001b2.js.map": "/rest-countries-api/static/js/main.8ba001b2.js.map"
+    "main.389d83fd.css.map": "/rest-countries-api/static/css/main.389d83fd.css.map",
+    "main.27bb3f19.js.map": "/rest-countries-api/static/js/main.27bb3f19.js.map"
   },
   "entrypoints": [
-    "static/css/main.4386a71c.css",
-    "static/js/main.8ba001b2.js"
+    "static/css/main.389d83fd.css",
+    "static/js/main.27bb3f19.js"
   ]
 }
