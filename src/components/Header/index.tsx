@@ -15,7 +15,8 @@ export default function Header() {
         type="button"
         aria-label="Toggle Theme"
         title="Toggle Theme"
-        onPointerDown={(event) => {
+        aria-pressed={themeContext.theme === "light" ? false : true}
+        onPointerDown={() => {
           themeContext.setTheme(
             themeContext.theme === "light" ? "dark" : "light"
           );

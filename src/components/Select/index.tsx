@@ -1,13 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleDown,
-} from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import "./select.css";
 
 type PropsSelect = {
   optionsSelect: string[];
   onFilteredRegion: (region: string) => void;
+  placeholder: string;
 };
 
 type OptionData = {
@@ -18,13 +17,14 @@ type OptionData = {
 export default function Select({
   optionsSelect,
   onFilteredRegion,
+  placeholder,
 }: PropsSelect) {
   const refCombo = useRef<HTMLDivElement>(null);
   const [isSelectOpen, setIsSelectOpen] = useState(false);
   const [ignoreBlur, setIgnoreBlur] = useState(false);
   const [optionSelected, setOptionSelected] = useState<OptionData>({
-    option: "All",
-    id: 0,
+    option: placeholder,
+    id: -1,
   });
 
   const selectActionsKey = {
@@ -229,9 +229,7 @@ export default function Select({
       if (isScrollable(document.querySelector(`[role="listbox"]`) as Element)) {
         //certifique-se de que a nova opção está à vista
         maintainScrollVisibility(
-          document.querySelector(
-            ".select__option--selected"
-          ) as HTMLElement,
+          document.querySelector(".select__option--selected") as HTMLElement,
           document.querySelector(`[role="listbox"]`) as HTMLElement
         );
       }
@@ -252,16 +250,14 @@ export default function Select({
   }
 
   useEffect(() => {
-    onFilteredRegion(optionSelected.option);
+    if (optionSelected.option.toLowerCase() !== placeholder.toLowerCase()) {
+      onFilteredRegion(optionSelected.option);
+    }
   }, [optionSelected]);
 
   return (
     <>
-      <div
-        className={
-          isSelectOpen ? "select select--open" : "select"
-        }
-      >
+      <div className={isSelectOpen ? "select select--open" : "select"}>
         <div
           className="select__input"
           id="combo1"
@@ -270,8 +266,8 @@ export default function Select({
           aria-controls="listbox1"
           role="combobox"
           aria-haspopup="listbox"
-          /*aria-labelledby="label-select"*/
           aria-label="Filter By Region"
+          title={placeholder}
           aria-activedescendant={
             isSelectOpen ? `combo1-${optionSelected.id}` : ""
           }

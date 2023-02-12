@@ -17,7 +17,7 @@ export default function FormSearch({
   onFilteredRegion,
   search,
 }: PropsFormSearch) {
-  const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania", "All"];
+  const regions = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 
   return (
     <Form
@@ -45,7 +45,7 @@ export default function FormSearch({
         </div>
       </div>
       <div className="form__Group">
-        <Select optionsSelect={regions} onFilteredRegion={onFilteredRegion} />
+        <Select optionsSelect={regions} onFilteredRegion={onFilteredRegion} placeholder="Filter By Region" />
       </div>
     </Form>
   );

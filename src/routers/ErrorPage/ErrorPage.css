@@ -6,32 +6,36 @@
     font-size: 2rem;
     font-weight: 800;
     margin: 0 0 20px 0;
+    color: var(--color-text);
 }
 
 .main__Message{
     font-size: 1.2rem;
     font-weight: 600;
     margin: 0 0 20px 0;
+    color: var(--color-text);
 }
 
 .main__Error-Message{
     font-size: 1rem;
     font-weight: 300;
     margin: 0 0 20px 0;
+    color: var(--color-text);
 }
 
 .main__Link-Return{
     display: block;
     text-decoration: none;
-    color: black;
+    color: var(--color-text);
     padding: 10px 0px;
     border-radius: 3px;
-    box-shadow: 0.5px 0.5px 2px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0.5px 0.5px 2px 2px var(--box-shadow-focus);
     width: 100px;
     text-align: center;
     font-weight: 600;
+    background-color: var(--color-elements);
 }
 
 .main__Link-Return:focus, .main__Link-Return:hover{
-    box-shadow: 1.5px 1.5px 6px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 1.5px 1.5px 6px 3px var(--box-shadow-focus);
 }
