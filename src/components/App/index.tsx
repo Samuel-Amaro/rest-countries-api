@@ -1,4 +1,5 @@
 import {
+  createBrowserRouter,
   createHashRouter,
   RouterProvider,
 } from "react-router-dom";
@@ -11,7 +12,7 @@ import { ThemeContextProvider } from "../../context/ThemeContext";
 
 /*Obs: deployment in gitHub pages não pode usar createBrowserRouter -> createBrowserRouter([]), temos que usar createHashRouter createBrowserRouter([])*/
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
@@ -24,7 +25,9 @@ const router = createHashRouter([
     loader: loaderCountriDetail,
     errorElement: <ErrorPage />,
   },
-]);
+], {
+  basename: "/rest-countries-api"
+});
 
 
 export default function App() {
